@@ -1,0 +1,44 @@
+
+body{
+	font-size:16px;
+	margin:0;
+	padding:0;
+}
+h1{
+	
+}
+
+.container{
+	width:90%;
+}
+.botones>ul{
+	list-style:none;
+}
+.botones > ul > li{
+	display:inline-block;
+}
+
+table {
+	width:100%;
+}
+
+.analfabeto{
+	display:none;
+}
+
+.estado_afiliacion{
+	display:none;
+}
+
+.distrito{
+	display:none;
+}
+.partido_politico{
+	display:none;
+}
+#mostrar_entre a{
+	-webkit-border-radius: 4px 0 0px 4px;
+	-moz-border-radius: 4px 0 0px 4px;
+	border-radius: 4px 0 0px 4px;
+
+}
