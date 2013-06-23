@@ -1,0 +1,15 @@
+<?php
+
+
+$user_db = "usuario_db";
+$name_db = "nombre_db";
+$pass_db = "contrasenia_db";
+$pass_sitio = "contrasenia";
+
+$config = array(
+	"usuario_db" => $user_db,
+	"pass_db" => $pass_db,
+	"nombre_db" => $name_db,
+	"pass_sitio" => $pass_sitio
+	);
+?>
