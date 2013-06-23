@@ -77,3 +77,64 @@ footer {
 #borrar_filtro{
 	display:none;
 }
+
+
+/* Comienza el Responsive Design */
+
+@media screen and (max-width:1200px){
+	.tipo_documento{
+		display:none;
+	}
+	.nro_registro{
+		display:none;
+	}
+}
+
+@media screen and (max-width:1100px){
+	.pisodepto{
+		display:none;
+	}
+
+	.profesion{
+		display:none;
+	}
+}
+
+
+@media screen and (max-width:910px){
+	.clase{
+		display:none;
+	}
+	.sexo{
+		display:none;
+	}
+	.seccion{
+		display:none;
+	}
+}
+@media screen and (max-width:700px){
+	.matricula{
+		display:none;
+	}
+	.circuito{
+		display:none;
+	}
+}
+
+@media screen and (max-width:520px){
+	.nro{
+		display:none;
+	}
+	.domicilio{
+		display:none;
+	}
+	.id{
+		display:none;
+	}
+
+@media screen and (max-width:340px){
+
+	.fecha_afiliacion{
+		display:none;
+	}
+}

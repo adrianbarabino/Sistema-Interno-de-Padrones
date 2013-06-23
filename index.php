@@ -84,7 +84,7 @@ function leer_contenido_completo($url){
 				</ul>
 			</section>
 		</header>
-	<section class="container">
+	<section class="container-fluid">
 
 
 
@@ -109,7 +109,7 @@ function leer_contenido_completo($url){
 
 					<th class="nro">Nro</th>
 
-					<th class="pisodpto">Piso<br>Dpto</th>
+					<th class="pisodepto">Piso<br>Dpto</th>
 
 					<th class="tipo_documento">Tipo DNI</th>
 
@@ -144,7 +144,7 @@ function leer_contenido_completo($url){
 					echo "<td class='nombres'> ".$item_actual->nombres." </td>";
 					echo "<td class='profesion'> ".$item_actual->profesion." </td>";
 					echo "<td class='domicilio'> ".$item_actual->domicilio." </td>";
-					echo "<td class='profesion'> ".$item_actual->profesion." </td>";
+					echo "<td class='nro'> ".$item_actual->nro." </td>";
 					echo "<td class='pisodepto'> ".$item_actual->pisodepto." </td>";
 					echo "<td class='tipo_documento'> ".$item_actual->tipo_documento." </td>";
 					echo "<td class='analfabeto'> ".$item_actual->analfabeto." </td>";
