@@ -1,10 +1,47 @@
 $(document).on("ready", inicio);
 $("#buscar_grupo a").on("click", cargar_datos);
 $("#mostrar_entre a").on("click", cargar_datos);
+$("#mostrar_entre input").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#mostrar_entre a").click();
+    }
+});
+$("#prependedDropdownButton").keyup(function(event){
+    if(event.keyCode == 13){
+        cargar_datos();
+    }
+});
 $("#mostrar_todos").on("click", cargar_datos);
 $("#ordenes a").on("click", cargar_datos);
 $("#radios button").on("click", cargar_datos);
 $("#borrar_filtro").on("click", cargar_datos);
+$('#prependedDropdownButton').typeahead({
+
+    source: function (query, process) {
+    	console.log(query);
+        return $.getJSON(
+            'api.php',
+            { query: query },
+            function (data) {
+            	console.log(data);
+
+    var newData = [];
+
+    $.each(data, function(){
+
+        newData.push(this.apellido);
+        newData.push(this.nombres);
+        newData.push(this.clase);
+        newData.push(this.domicilio);
+        newData.push(this.matricula);
+
+    });
+
+    return process(newData);
+            });
+    }
+
+});
 var data_actual;
 data_actual = {order: "id", order2: "asc", limit:"0,30"};
 function cargar_datos (info) {
@@ -12,6 +49,7 @@ function cargar_datos (info) {
 		valor,
 		tipo;
 		console.log(info);
+		error = false;
 
 		orden2 = $("#radios .active").text();
 		if(orden2 == "Ascendente"){
@@ -20,28 +58,60 @@ function cargar_datos (info) {
 		if(orden2 == "Descendente"){
 			orden2 = "desc"
 		}
+
 		valor = $("#prependedDropdownButton").val();
 
 	if(valor){
+		if(info){
+
+
 		tipo = info.currentTarget.text;
 
 		if(tipo == "Apellido"){
-			data = {where: "apellido", like: valor, order2: orden2};
+			data = data_actual;
+			data.buscar = "";
+			data.where  = "apellido";
+			data.like = valor;
+			data.order2 = orden2;
 		}
 		if(tipo == "Nombre"){
-			data = {where: "nombres", like: valor, order2: orden2};
-		}	
+			data = data_actual;
+			data.buscar = "";
+			data.where  = "nombres";
+			data.like = valor;
+			data.order2 = orden2;		}	
 		if(tipo == "Calle"){
-			data = {where: "domicilio", like: valor, order2: orden2};
-		}		
+			data = data_actual;
+			data.buscar = "";
+			data.where  = "domicilio";
+			data.like = valor;
+			data.order2 = orden2;		}		
 		if(tipo == "Clase"){
-			data = {where: "clase", es: valor, order2: orden2};
-		}	
+			data = data_actual;
+			data.buscar = "";
+			data.where  = "clase";
+			data.es = valor;
+			data.order2 = orden2;		}	
 		if(tipo == "DNI"){
-			data = {where: "matricula", like: valor, order2: orden2};
-		}		
+			data = data_actual;
+			data.buscar = "";
+			data.where  = "matricula";
+			data.like = valor;
+			data.order2 = orden2;		}	
+
+		}else{
+			data = data_actual;
+			data.buscar  = valor;
+			data.like = "";
+			data.where = "";
+			data.order2 = orden2;
+		}	
 
 	}else{
+		if(info.currentTarget.parentElement.parentElement.className == "dropdown-menu filtros"){
+			alert("Necesitás ingresar un valor a buscar!");
+			error = true;
+		}
 		tipo = info.currentTarget.innerText;
 		limite = $("#mostrar_entre input").val();
 
@@ -58,6 +128,7 @@ function cargar_datos (info) {
 			data.where = "" ;
 			data.like = "";
 			data.es = "";		
+			data.buscar = "";		
 			data.limit = limite;		
 		}		
 		if(tipo == "Descendente"){
@@ -98,6 +169,9 @@ function cargar_datos (info) {
 
 
 	}
+	if(!error){
+
+
 	$("table tbody").html("<h1>Cargando la información</h1>");
 	$.ajax({
 		type: "POST",
@@ -119,6 +193,17 @@ function cargar_datos (info) {
 
 	})
 		data_actual = data;
+		if(data_actual.where){
+			$("#borrar_filtro").slideDown();
+		}else{
+			$("#borrar_filtro").slideUp();
+		}
+		if(data_actual.buscar){
+			$("#borrar_filtro").slideDown();
+		}else{
+			$("#borrar_filtro").slideUp();
+		}
+			}
 }
 function inicio (info) {
 	$('#radios').button()

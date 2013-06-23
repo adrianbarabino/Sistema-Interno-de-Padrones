@@ -22,6 +22,7 @@ function leer_contenido_completo($url){
 	<meta charset="UTF-8">
 	<title>Padrones EC 2013</title>
 	<link rel="stylesheet" href="./css/bootstrap.min.css" />
+	<link rel="stylesheet" href="./css/bootstrap-responsive.min.css" />
 	<link rel="stylesheet" href="./css/padrones.css" />
 	<meta property="og:title" content="Padron Interno de Encuentro Ciudadano ">	
 	<meta property="og:description" content="Padrón de Afiliados al partido, plataforma interna, acceso restringido. ">	
@@ -29,62 +30,63 @@ function leer_contenido_completo($url){
 
 </head>
 <body>
-	<section class="container">
+	<?php if($loginOK){
+
+	?>
 		<header>
 			<h1>Encuentro Ciudadano <small>- Sistema interno de padrones</small></h1>
-		</header>
-		<?php if($loginOK){
-
-			?>
-
-		<section class="botones">
-			<ul>
-				<li class="form-search">
-					  <div class="input-prepend" id="buscar_grupo">
-					  	  <div class="btn-group">
-						    <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-						      Filtrar por
-						      <span class="caret"></span>
-						    </button>
-						    <ul class="dropdown-menu">
-						      <li><a href="javascript:void(0)" class="">Apellido</a></li>
-						      <li><a href="javascript:void(0)" class="">Nombre</a></li>
-						      <li><a href="javascript:void(0)" class="">Calle</a></li>
-						      <li><a href="javascript:void(0)" class="">Clase</a></li>
-						      <li><a href="javascript:void(0)" class="">DNI</a></li>
-						    </ul>
-						  </div>
-					    <input type="text"  placeholder="Ingresa el valor a buscar" class="span2" id="prependedDropdownButton">
-					  </div>
-				</li>
+			<section class="botones">
+				<ul>
 					<li class="form-search">
-					  <div class="input-prepend" id="mostrar_entre">
-					    <a href="javascript:void(0);" class="btn btn-info">Mostrar entre </a>
-					    <input type="text" placeholder="0,30" class="span2">
-					  </div>
+						  <div class="input-prepend" id="buscar_grupo">
+						  	  <div class="btn-group">
+							    <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+							      Filtrar por
+							      <span class="caret"></span>
+							    </button>
+							    <ul class="dropdown-menu filtros">
+							      <li><a href="javascript:void(0)" class="">Apellido</a></li>
+							      <li><a href="javascript:void(0)" class="">Nombre</a></li>
+							      <li><a href="javascript:void(0)" class="">Calle</a></li>
+							      <li><a href="javascript:void(0)" class="">Clase</a></li>
+							      <li><a href="javascript:void(0)" class="">DNI</a></li>
+							    </ul>
+							  </div>
+						    <input type="text"  placeholder="Ingresa el valor a buscar" class="span2" id="prependedDropdownButton">
+						  </div>
+					</li>
+						<li class="form-search">
+						  <div class="input-prepend" id="mostrar_entre">
+						    <a href="javascript:void(0);" class="btn btn-info">Mostrar entre </a>
+						    <input type="text" placeholder="0,30" class="span2">
+						  </div>
 
-				</li>
-				<li> <a href="javascript:void(0);" id="mostrar_todos" class="btn btn-info" >Mostrar todos (lento)</a></li>
-				<li> <a href="javascript:void(0);" id="borrar_filtro" class="btn btn-danger" >Borrar Filtro</a></li>
-				<li><div class="btn-group">
-                <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Ordenar por <span class="caret"></span></button>
-                <ul class="dropdown-menu" id="ordenes">
-                  <li><a href="javascript:void(0)" id="ordenar_anio">Año de Afiliacion</a></li>
-                  <li><a href="javascript:void(0)" id="ordenar_dni">DNI</a></li>
-                  <li><a href="javascript:void(0)" id="ordenar_clase">Clase</a></li>
-                  <li><a href="javascript:void(0)" id="ordenar_apellido">Apellido</a></li>
-                  <li><a href="javascript:void(0)" id="ordenar_nombre">Nombres</a></li>
-                </ul>
-              </div></li>
-              <li>
-              	<div class="btn-group" id="radios" data-toggle="buttons-radio">
-				  <button type="button" class="btn btn-info active">Ascendente</button>
-				  <button type="button" class="btn btn-info">Descendente</button>
-				</div>
-              </li>
-				
-			</ul>
-		</section>
+					</li>
+					<li> <a href="javascript:void(0);" id="mostrar_todos" class="btn btn-info" >Mostrar todos (lento)</a></li>
+					<li> <a href="javascript:void(0);" id="borrar_filtro" class="btn btn-danger" >Borrar Filtro</a></li>
+					<li><div class="btn-group">
+	                <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Ordenar por <span class="caret"></span></button>
+	                <ul class="dropdown-menu" id="ordenes">
+	                  <li><a href="javascript:void(0)" id="ordenar_anio">Año de Afiliacion</a></li>
+	                  <li><a href="javascript:void(0)" id="ordenar_dni">DNI</a></li>
+	                  <li><a href="javascript:void(0)" id="ordenar_clase">Clase</a></li>
+	                  <li><a href="javascript:void(0)" id="ordenar_apellido">Apellido</a></li>
+	                  <li><a href="javascript:void(0)" id="ordenar_nombre">Nombres</a></li>
+	                </ul>
+	              </div></li>
+	              <li>
+	              	<div class="btn-group" id="radios" data-toggle="buttons-radio">
+					  <button type="button" class="btn btn-info active">Ascendente</button>
+					  <button type="button" class="btn btn-info">Descendente</button>
+					</div>
+	              </li>
+					
+				</ul>
+			</section>
+		</header>
+	<section class="container">
+
+
 
 		<table class="table table-striped">
 			<thead>
@@ -107,15 +109,15 @@ function leer_contenido_completo($url){
 
 					<th class="nro">Nro</th>
 
-					<th class="pisodpto">Piso/Dpto</th>
+					<th class="pisodpto">Piso<br>Dpto</th>
 
 					<th class="tipo_documento">Tipo DNI</th>
 
 					<th class="analfabeto">Analfabeto</th>
 
-					<th class="seccion">Sección</th>
+					<th class="seccion"><abbr title="Sección">Secc.</abbr></th>
 
-					<th class="circuito">Circuito</th>
+					<th class="circuito"><abbr title="Circuito">Circ.</abbr></th>
 
 					<th class="sexo">Sexo</th>
 

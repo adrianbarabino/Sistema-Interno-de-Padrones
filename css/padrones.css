@@ -1,11 +1,17 @@
 
-body{
+body,html{
+	background: #f70;
+	color:white;
 	font-size:16px;
 	margin:0;
 	padding:0;
 }
 h1{
 	
+}
+
+h1 small{
+	color:#eee;
 }
 
 .container{
@@ -41,4 +47,33 @@ table {
 	-moz-border-radius: 4px 0 0px 4px;
 	border-radius: 4px 0 0px 4px;
 
+}
+
+
+.table th, .table td{
+	border-color: rgba(221,221,221,0.19);
+}
+
+.table-striped tbody>tr:nth-child(odd)>td, .table-striped tbody>tr:nth-child(odd)>th{
+	background-color: rgba(249,249,249,0.19);
+}
+
+header {
+	background: rgb(67, 112, 168);
+	margin: 0;
+	margin-top: -0.8em;
+	padding: .5em 0;
+	text-align: center;
+}
+
+footer {
+	margin: 0 auto;
+	margin-bottom: 1em;
+	max-width: 800px;
+	text-align: center;
+	width: 100%;
+}
+
+#borrar_filtro{
+	display:none;
 }
