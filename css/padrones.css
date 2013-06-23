@@ -102,6 +102,9 @@ footer {
 
 
 @media screen and (max-width:910px){
+	.botones ul > li{
+		margin:0.2em;
+	}
 	.clase{
 		display:none;
 	}
